@@ -65,5 +65,21 @@ namespace ProgramW21.Tests
             // Assert
             Assert.AreEqual(Math.Round(43.33, 2), Math.Round(statistics.Average, 2));
         }
+
+        [Test]
+        public void AddGradeStatisticsSumCheck()
+        {
+            // Arrange
+            var employee = new Employee("S", "M");
+
+            // Act
+            employee.AddGrade(50);
+            employee.AddGrade(30);
+            employee.AddGrade(50);
+            var statistics = employee.GetStatistics();
+
+            // Assert
+            Assert.AreEqual(130, statistics.Sum);
+        }
     }
 }
