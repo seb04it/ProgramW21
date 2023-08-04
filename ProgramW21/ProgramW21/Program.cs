@@ -6,7 +6,7 @@ employee.AddGrade(5);
 employee.AddGrade(50);
 employee.AddGrade(35);
 
-var statistics = employee.GetStatistics();
+var statistics = employee.GetStatisticsWhile();
 Console.WriteLine($"Sum: {statistics.Sum}");
 Console.WriteLine($"Max: {statistics.Max}");
 Console.WriteLine($"Min: {statistics.Min}");
