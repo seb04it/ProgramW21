@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace ProgramW21
+﻿namespace ProgramW21
 {
     public class Employee
     {
@@ -29,6 +27,16 @@ namespace ProgramW21
 
         public void AddGrade(string grade)
         {
+            if(grade.Length == 1)
+            {
+                char gradeChar = char.ToUpper(grade[0]);
+                
+                if (gradeChar >= 'A' && gradeChar <= 'E')
+                {
+                    this.AddGrade(gradeChar);
+                    return;
+                }
+            }
             if(float.TryParse(grade, out float stringAsFloat))
             {
                 this.AddGrade(stringAsFloat);
@@ -36,6 +44,36 @@ namespace ProgramW21
             else
             {
                 Console.WriteLine("Invalid type of string");
+            }
+        }
+
+        public void AddGrade(char grade)
+        {
+            switch(grade)
+            {
+                case 'A':
+                case 'a':
+                    this.grades.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.grades.Add(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.grades.Add(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.grades.Add(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.grades.Add(20);
+                    break;
+                default:
+                    Console.WriteLine("Invalid char");
+                    break;
             }
         }
 
@@ -90,6 +128,26 @@ namespace ProgramW21
             }
 
             statistics.Average /= this.grades.Count;
+            
+            switch (statistics.Average)
+            {
+                case var Average when Average >= 80:
+                    statistics.AverageGrade = 'A';
+                    break;
+                case var Average when Average >= 60:
+                    statistics.AverageGrade = 'B';
+                    break;
+                case var Average when Average >= 40:
+                    statistics.AverageGrade = 'C';
+                    break;
+                case var Average when Average >= 20:
+                    statistics.AverageGrade = 'D';
+                    break;
+                default:
+                    statistics.AverageGrade = 'E';
+                    break;
+            }
+
             return statistics;
         }
 

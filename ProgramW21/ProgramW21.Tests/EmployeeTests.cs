@@ -9,13 +9,13 @@ namespace ProgramW21.Tests
             var employee = new Employee("S", "M");
 
             // Act
-            employee.AddGrade(50);
+            employee.AddGrade('C');
             employee.AddGrade(30);
-            employee.AddGrade(35);
+            employee.AddGrade(50);
             var statistics = employee.GetStatisticsForeach();
 
             // Assert
-            Assert.AreEqual(50, statistics.Max);
+            Assert.AreEqual(60, statistics.Max);
         }
 
         [Test]
@@ -25,13 +25,13 @@ namespace ProgramW21.Tests
             var employee = new Employee("S", "M");
 
             // Act
-            employee.AddGrade(50);
+            employee.AddGrade('C');
             employee.AddGrade(30);
-            employee.AddGrade(40);
+            employee.AddGrade(20);
             var statistics = employee.GetStatisticsFor();
 
             // Assert
-            Assert.AreEqual(30, statistics.Min);
+            Assert.AreEqual(20, statistics.Min);
         }
 
         [Test]
@@ -41,13 +41,12 @@ namespace ProgramW21.Tests
             var employee = new Employee("S", "M");
 
             // Act
-            employee.AddGrade(50);
-            employee.AddGrade(30);
+            employee.AddGrade('C');
             employee.AddGrade(40);
             var statistics = employee.GetStatisticsDoWhile();
 
             // Assert
-            Assert.AreEqual(40, statistics.Average);
+            Assert.AreEqual(50, statistics.Average);
         }
 
         [Test]
@@ -57,13 +56,13 @@ namespace ProgramW21.Tests
             var employee = new Employee("S", "M");
 
             // Act
-            employee.AddGrade(50);
+            employee.AddGrade('C');
             employee.AddGrade(30);
             employee.AddGrade(50);
-            var statistics = employee.GetStatisticsWhile();
+            var statistics = employee.GetStatisticsForeach();
 
             // Assert
-            Assert.AreEqual(Math.Round(43.33, 2), Math.Round(statistics.Average, 2));
+            Assert.AreEqual(Math.Round(46.67, 2), Math.Round(statistics.Average, 2));
         }
 
         [Test]
@@ -73,13 +72,13 @@ namespace ProgramW21.Tests
             var employee = new Employee("S", "M");
 
             // Act
-            employee.AddGrade(50);
+            employee.AddGrade('C');
             employee.AddGrade(30);
-            employee.AddGrade(50);
+            employee.AddGrade(20);
             var statistics = employee.GetStatisticsForeach();
 
             // Assert
-            Assert.AreEqual(130, statistics.Sum);
+            Assert.AreEqual(110, statistics.Sum);
         }
     }
 }
