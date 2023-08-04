@@ -28,7 +28,7 @@ namespace ProgramW21.Tests
             employee.AddGrade(50);
             employee.AddGrade(30);
             employee.AddGrade(40);
-            var statistics = employee.GetStatisticsForeach();
+            var statistics = employee.GetStatisticsFor();
 
             // Assert
             Assert.AreEqual(30, statistics.Min);
@@ -44,7 +44,7 @@ namespace ProgramW21.Tests
             employee.AddGrade(50);
             employee.AddGrade(30);
             employee.AddGrade(40);
-            var statistics = employee.GetStatisticsForeach();
+            var statistics = employee.GetStatisticsDoWhile();
 
             // Assert
             Assert.AreEqual(40, statistics.Average);
@@ -60,7 +60,7 @@ namespace ProgramW21.Tests
             employee.AddGrade(50);
             employee.AddGrade(30);
             employee.AddGrade(50);
-            var statistics = employee.GetStatisticsForeach();
+            var statistics = employee.GetStatisticsWhile();
 
             // Assert
             Assert.AreEqual(Math.Round(43.33, 2), Math.Round(statistics.Average, 2));
