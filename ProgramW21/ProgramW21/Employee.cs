@@ -55,7 +55,7 @@ namespace ProgramW21
             this.AddGrade(doubleAsFloat);
         }
 
-        public Statistics GetStatisticsForeach()
+        public Statistics GetStatisticsFor()
         {
             var statistics = new Statistics();
             statistics.Max = float.MinValue;
@@ -74,7 +74,7 @@ namespace ProgramW21
             return statistics;
         }
 
-        public Statistics GetStatisticsFor()
+        public Statistics GetStatisticsForeach()
         {
             var statistics = new Statistics();
             statistics.Max = float.MinValue;
