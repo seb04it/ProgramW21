@@ -16,7 +16,19 @@ while (true)
         Console.WriteLine("Dziękuję za skorzystanie z programu, oto wyniki: ");
         break;
     }
-    employee.AddGrade(input);
+
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception exception)
+    {
+        Console.WriteLine($"Exception cought: {exception.Message}");
+    }
+    finally
+    {
+        Console.WriteLine("Code running");
+    }
 }
 
 var statistics = employee.GetStatisticsForeach();

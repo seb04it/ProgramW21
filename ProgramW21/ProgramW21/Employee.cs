@@ -21,7 +21,7 @@
             }
             else
             {
-                Console.WriteLine("Invalid grade value");
+                throw new Exception("Invalid grade value");
             }
         }
 
@@ -43,7 +43,7 @@
             }
             else
             {
-                Console.WriteLine("Invalid type of string");
+                throw new Exception("Invalid type of string");
             }
         }
 
@@ -72,8 +72,7 @@
                     this.grades.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Invalid char");
-                    break;
+                    throw new Exception("Invalid char");
             }
         }
 
@@ -91,25 +90,6 @@
         {
             var doubleAsFloat = (float)grade;
             this.AddGrade(doubleAsFloat);
-        }
-
-        public Statistics GetStatisticsFor()
-        {
-            var statistics = new Statistics();
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.Average = 0;
-            statistics.Sum = this.grades.Sum();
-
-            foreach (var grade in this.grades)
-            {
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Average += grade;
-            }
-
-            statistics.Average /= this.grades.Count;
-            return statistics;
         }
 
         public Statistics GetStatisticsForeach()
@@ -148,47 +128,6 @@
                     break;
             }
 
-            return statistics;
-        }
-
-        public Statistics GetStatisticsDoWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.Average = 0;
-            statistics.Sum = this.grades.Sum();
-            var counter = 0;
-
-            do
-            {
-                statistics.Max = Math.Max(statistics.Max, this.grades[counter]);
-                statistics.Min = Math.Min(statistics.Min, this.grades[counter]);
-                statistics.Average += this.grades[counter];
-                counter++;
-            } while (counter < this.grades.Count);
-
-            statistics.Average /= this.grades.Count;
-            return statistics;
-        }
-        public Statistics GetStatisticsWhile()
-        {
-            var statistics = new Statistics();
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.Average = 0;
-            statistics.Sum = this.grades.Sum();
-            var counter = 0;
-
-            while (counter < this.grades.Count)
-            {
-                statistics.Max = Math.Max(statistics.Max, this.grades[counter]);
-                statistics.Min = Math.Min(statistics.Min, this.grades[counter]);
-                statistics.Average += this.grades[counter];
-                counter++;
-            }
-
-            statistics.Average /= this.grades.Count;
             return statistics;
         }
     }
