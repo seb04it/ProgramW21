@@ -1,16 +1,25 @@
 ﻿namespace ProgramW21
 {
-    public class Employee
+    public class Employee : Person
     {
         public List<float> grades = new List<float>();
 
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
+        public Employee()
+            :this("No name", "No surname")
+        {
+
+        }
+
+        public Employee(string name)
+            :this(name, "No Surname")
+        {
+
+        }
 
         public Employee(string name, string surname)
+            :base(name, surname)
         {
-            this.Name = name;
-            this.Surname = surname;
+            
         }
 
         public void AddGrade(float grade)
