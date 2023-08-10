@@ -1,16 +1,16 @@
 ﻿namespace ProgramW21
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
         public List<float> grades = new List<float>();
 
-        public Employee(string name, string surname)
+        public Supervisor(string name, string surname)
         {
             this.Name = name;
             this.Surname = surname;
         }
 
-        public string Name  { get; private set; }
+        public string Name { get; private set; }
 
         public string Surname { get; private set; }
 
@@ -28,29 +28,84 @@
 
         public void AddGrade(string grade)
         {
-            if(grade.Length == 1)
+            if (grade.Length == 1 && char.IsLetter(grade[0]))
             {
                 char gradeChar = char.ToUpper(grade[0]);
-                
+
                 if (gradeChar >= 'A' && gradeChar <= 'E')
                 {
                     this.AddGrade(gradeChar);
                     return;
                 }
             }
-            if(float.TryParse(grade, out float stringAsFloat))
-            {
-                this.AddGrade(stringAsFloat);
-            }
             else
             {
-                throw new Exception("Invalid type of string");
+
+                switch (grade)
+                {
+                    case "6":
+                        this.grades.Add(100);
+                        break;
+                    case "-6":
+                    case "6-":
+                        this.grades.Add(95);
+                        break;
+                    case "+5":
+                    case "5+":
+                        this.grades.Add(85);
+                        break;
+                    case "5":
+                        this.grades.Add(80);
+                        break;
+                    case "-5":
+                    case "5-":
+                        this.grades.Add(75);
+                        break;
+                    case "+4":
+                    case "4+":
+                        this.grades.Add(65);
+                        break;
+                    case "4":
+                        this.grades.Add(60);
+                        break;
+                    case "-4":
+                    case "4-":
+                        this.grades.Add(85);
+                        break;
+                    case "+3":
+                    case "3+":
+                        this.grades.Add(45);
+                        break;
+                    case "3":
+                        this.grades.Add(40);
+                        break;
+                    case "-3":
+                    case "3-":
+                        this.grades.Add(35);
+                        break;
+                    case "+2":
+                    case "2+":
+                        this.grades.Add(25);
+                        break;
+                    case "2":
+                        this.grades.Add(20);
+                        break;
+                    case "-2":
+                    case "2-":
+                        this.grades.Add(15);
+                        break;
+                    case "1":
+                        this.grades.Add(0);
+                        break;
+                    default:
+                            throw new Exception("Invalid type of string");
+                }
             }
         }
 
         public void AddGrade(char grade)
         {
-            switch(grade)
+            switch (grade)
             {
                 case 'A':
                 case 'a':
@@ -109,7 +164,7 @@
             }
 
             statistics.Average /= this.grades.Count;
-            
+
             switch (statistics.Average)
             {
                 case var Average when Average >= 80:

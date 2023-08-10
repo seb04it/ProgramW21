@@ -4,7 +4,7 @@ Console.WriteLine("Witaj w programie do oceny pracowników!");
 Console.WriteLine("===============================================");
 Console.WriteLine();
 
-var employee = new Employee("S", "M");
+var supervisor = new Supervisor("S", "M");
 
 while (true)
 {
@@ -19,7 +19,7 @@ while (true)
 
     try
     {
-        employee.AddGrade(input);
+        supervisor.AddGrade(input);
     }
     catch (Exception exception)
     {
@@ -31,7 +31,7 @@ while (true)
     }
 }
 
-var statistics = employee.GetStatisticsForeach();
+var statistics = supervisor.GetStatisticsForeach();
 Console.WriteLine($"Sum: {statistics.Sum}");
 Console.WriteLine($"Max: {statistics.Max}");
 Console.WriteLine($"Min: {statistics.Min}");
