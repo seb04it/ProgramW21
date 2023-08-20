@@ -1,20 +1,14 @@
 ﻿namespace ProgramW21
 {
-    public class Employee : IEmployee
+    public class EmployeeInMemory : EmployeeBase
     {
         public List<float> grades = new List<float>();
-
-        public Employee(string name, string surname)
+        public EmployeeInMemory(string name, string surname) 
+            : base(name, surname)
         {
-            this.Name = name;
-            this.Surname = surname;
         }
 
-        public string Name  { get; private set; }
-
-        public string Surname { get; private set; }
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
             {
@@ -26,19 +20,18 @@
             }
         }
 
-        public void AddGrade(string grade)
+        public override void AddGrade(string grade)
         {
-            if(grade.Length == 1)
+            if (grade.Length == 1)
             {
                 char gradeChar = char.ToUpper(grade[0]);
-                
                 if (gradeChar >= 'A' && gradeChar <= 'E')
                 {
                     this.AddGrade(gradeChar);
                     return;
                 }
             }
-            if(float.TryParse(grade, out float stringAsFloat))
+            if (float.TryParse(grade, out float stringAsFloat))
             {
                 this.AddGrade(stringAsFloat);
             }
@@ -48,9 +41,9 @@
             }
         }
 
-        public void AddGrade(char grade)
+        public override void AddGrade(char grade)
         {
-            switch(grade)
+            switch (grade)
             {
                 case 'A':
                 case 'a':
@@ -77,23 +70,26 @@
             }
         }
 
-        public void AddGrade(int grade)
+        public override void AddGrade(int grade)
         {
             var intAsFloat = (float)grade;
             this.AddGrade(intAsFloat);
         }
-        public void AddGrade(long grade)
+
+        public override void AddGrade(long grade)
         {
             var longAsFloat = (float)grade;
             this.AddGrade(longAsFloat);
         }
-        public void AddGrade(double grade)
+
+
+        public override void AddGrade(double grade)
         {
             var doubleAsFloat = (float)grade;
             this.AddGrade(doubleAsFloat);
         }
 
-        public Statistics GetStatisticsForeach()
+        public override Statistics GetStatisticsForeach()
         {
             var statistics = new Statistics();
             statistics.Max = float.MinValue;
@@ -101,15 +97,15 @@
             statistics.Average = 0;
             statistics.Sum = this.grades.Sum();
 
-            for (var counter = 0; counter < this.grades.Count; counter++)
+            foreach (var grade in this.grades)
             {
-                statistics.Max = Math.Max(statistics.Max, this.grades[counter]);
-                statistics.Min = Math.Min(statistics.Min, this.grades[counter]);
-                statistics.Average += this.grades[counter];
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
             }
 
             statistics.Average /= this.grades.Count;
-            
+
             switch (statistics.Average)
             {
                 case var Average when Average >= 80:
