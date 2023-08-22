@@ -4,7 +4,6 @@ namespace ProgramW21
 {
     public interface IEmployee
     {
-
         event GradeAddedDelegate GradeAdded;
 
         string Name { get; }
