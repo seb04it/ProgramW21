@@ -2,6 +2,10 @@
 {
     public class EmployeeInFile : EmployeeBase
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
+
         public const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname) 
             : base(name, surname)
@@ -15,6 +19,11 @@
                 if (grade >= 0 && grade <= 100)
                 {
                     writer.WriteLine(grade);
+
+                    if(GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
                 else
                 {
@@ -96,10 +105,6 @@
                 using (var reader = File.OpenText(fileName))
                 {
                     var line = reader.ReadLine();
-                    if (line == null)
-                    {
-                        Console.WriteLine("The file is empty, add grades");
-                    }
                     while (line != null)
                     {
                         var number = float.Parse(line);

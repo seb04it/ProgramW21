@@ -1,7 +1,12 @@
-﻿namespace ProgramW21
+﻿using static ProgramW21.EmployeeBase;
+
+namespace ProgramW21
 {
     public interface IEmployee
     {
+
+        event GradeAddedDelegate GradeAdded;
+
         string Name { get; }
         string Surname { get; }
 

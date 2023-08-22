@@ -5,12 +5,21 @@
 //Console.WriteLine();
 
 var employee = new EmployeeInFile("S", "M");
+employee.GradeAdded += Employee_GradeAdded;
 
-var statistics = employee.GetStatisticsForeach();
-Console.WriteLine($"Max:{statistics.Max}");
-Console.WriteLine($"Min:{statistics.Min}");
-Console.WriteLine($"Average:{statistics.Average:n2}");
-Console.WriteLine($"AverageLetter:{statistics.AverageGrade}");
+void Employee_GradeAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Grade added");
+}
+
+employee.AddGrade(0.5);
+employee.AddGrade(1000);
+
+//var statistics = employee.GetStatisticsForeach();
+//Console.WriteLine($"Max:{statistics.Max}");
+//Console.WriteLine($"Min:{statistics.Min}");
+//Console.WriteLine($"Average:{statistics.Average:n2}");
+//Console.WriteLine($"AverageLetter:{statistics.AverageGrade}");
 
 //while (true)
 //{
