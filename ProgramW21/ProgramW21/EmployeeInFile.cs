@@ -116,17 +116,11 @@
                     {
                         if (!string.IsNullOrWhiteSpace(line))
                         {
-                            try
-                            {
-                                var number = float.Parse(line);
-                                grades.Add(number);
-                            }
-                            catch (FormatException)
-                            {
-                                Console.WriteLine($"Invalid format in line: {line}");
-                            }
+                            var number = float.Parse(line);
+                            grades.Add(number);
+                            line = reader.ReadLine();
+
                         }
-                        line = reader.ReadLine();
                     }
                 }
                 if (grades.Count == 0)

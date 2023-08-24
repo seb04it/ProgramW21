@@ -12,7 +12,7 @@ void Employee_GradeAdded(object sender, EventArgs args)
     Console.WriteLine("Grade added");
 }
 
-employee.AddGrade("60");
+employee.AddGrade(60);
 
 while (true)
 {
