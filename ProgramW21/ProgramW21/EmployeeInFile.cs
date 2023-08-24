@@ -35,13 +35,22 @@
         }
         public override void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float grade0))
+            if (grade.Length == 1)
             {
-                this.AddGrade(grade0);
+                char gradeChar = char.ToUpper(grade[0]);
+                if (gradeChar >= 'A' && gradeChar <= 'E')
+                {
+                    this.AddGrade(gradeChar);
+                    return;
+                }
+            }
+            if (float.TryParse(grade, out float stringAsFloat))
+            {
+                this.AddGrade(stringAsFloat);
             }
             else
             {
-                throw new Exception("Invalid grade value");
+                throw new Exception("Invalid type of string");
             }
         }
 
@@ -109,10 +118,24 @@
                     var line = reader.ReadLine();
                     while (line != null)
                     {
-                        var number = float.Parse(line);
-                        grades.Add(number);
+                        if (!string.IsNullOrWhiteSpace(line))
+                        {
+                            try
+                            {
+                                var number = float.Parse(line);
+                                grades.Add(number);
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine($"Invalid format in line: {line}");
+                            }
+                        }
                         line = reader.ReadLine();
                     }
+                }
+                if (grades.Count == 0)
+                {
+                    Console.WriteLine("The file is empty, add grades");
                 }
             }
             return grades;
@@ -120,41 +143,12 @@
         private Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-            statistics.Average = 0;
 
             foreach (var grade in grades)
             {
-                if (grade >= 0)
-                {
-                    statistics.Max = Math.Max(statistics.Max, grade);
-                    statistics.Min = Math.Min(statistics.Min, grade);
-                    statistics.Average += grade;
-                }
-
+                statistics.AddGrade(grade);
             }
-            statistics.Average /= grades.Count;
 
-            switch (statistics.Average)
-            {
-                case var average when average >= 80:
-                    statistics.AverageGrade = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageGrade = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageGrade = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageGrade = 'D';
-                    break;
-                default:
-                    statistics.AverageGrade = 'E';
-                    break;
-
-            }
             return statistics;
         }
     }
