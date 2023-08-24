@@ -6,7 +6,7 @@
         public override event GradeAddedDelegate GradeAdded;
 
         public List<float> grades = new List<float>();
-        public EmployeeInMemory(string name, string surname) 
+        public EmployeeInMemory(string name, string surname)
             : base(name, surname)
         {
         }
@@ -17,7 +17,7 @@
             {
                 this.grades.Add(grade);
 
-                if(GradeAdded != null)
+                if (GradeAdded != null)
                 {
                     GradeAdded(this, new EventArgs());
                 }
@@ -30,16 +30,13 @@
 
         public override void AddGrade(string grade)
         {
-            if (grade.Length == 1)
+            char gradeChar = char.ToUpper(grade[0]);
+            if (gradeChar >= 'A' && gradeChar <= 'E')
             {
-                char gradeChar = char.ToUpper(grade[0]);
-                if (gradeChar >= 'A' && gradeChar <= 'E')
-                {
-                    this.AddGrade(gradeChar);
-                    return;
-                }
+                this.AddGrade(gradeChar);
+                GradeAdded?.Invoke(this, EventArgs.Empty);
             }
-            if (float.TryParse(grade, out float stringAsFloat))
+            else if (float.TryParse(grade, out float stringAsFloat))
             {
                 this.AddGrade(stringAsFloat);
             }

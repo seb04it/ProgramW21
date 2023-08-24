@@ -1,8 +1,8 @@
 ﻿using ProgramW21;
 
-//Console.WriteLine("Witaj w programie do oceny pracowników!");
-//Console.WriteLine("===============================================");
-//Console.WriteLine();
+Console.WriteLine("Witaj w programie do oceny pracowników!");
+Console.WriteLine("===============================================");
+Console.WriteLine();
 
 var employee = new EmployeeInFile("S", "M");
 employee.GradeAdded += Employee_GradeAdded;
@@ -11,6 +11,8 @@ void Employee_GradeAdded(object sender, EventArgs args)
 {
     Console.WriteLine("Grade added");
 }
+
+employee.AddGrade("60");
 
 while (true)
 {

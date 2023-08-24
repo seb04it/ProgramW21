@@ -35,16 +35,12 @@
         }
         public override void AddGrade(string grade)
         {
-            if (grade.Length == 1)
+            char gradeChar = char.ToUpper(grade[0]);
+            if (gradeChar >= 'A' && gradeChar <= 'E')
             {
-                char gradeChar = char.ToUpper(grade[0]);
-                if (gradeChar >= 'A' && gradeChar <= 'E')
-                {
-                    this.AddGrade(gradeChar);
-                    return;
-                }
+                this.AddGrade(gradeChar);
             }
-            if (float.TryParse(grade, out float stringAsFloat))
+            else if (float.TryParse(grade, out float stringAsFloat))
             {
                 this.AddGrade(stringAsFloat);
             }
