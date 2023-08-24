@@ -35,14 +35,14 @@
         }
         public override void AddGrade(string grade)
         {
-            char gradeChar = char.ToUpper(grade[0]);
-            if (gradeChar >= 'A' && gradeChar <= 'E')
-            {
-                this.AddGrade(gradeChar);
-            }
-            else if (float.TryParse(grade, out float stringAsFloat))
+            
+            if (float.TryParse(grade, out float stringAsFloat))
             {
                 this.AddGrade(stringAsFloat);
+            }
+            else if (char.TryParse(grade, out char charAsFloat))
+            {
+                this.AddGrade(charAsFloat);
             }
             else
             {
@@ -72,10 +72,10 @@
                     break;
                 case 'E':
                 case 'e':
-                    this.AddGrade(20); ;
+                    this.AddGrade(20);
                     break;
                 default:
-                    throw new Exception("Invalid letter");
+                    throw new Exception("Invalid char");
             }
         }
 

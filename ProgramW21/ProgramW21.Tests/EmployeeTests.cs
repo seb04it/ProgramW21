@@ -43,7 +43,7 @@ namespace ProgramW21.Tests
             //Act
             employee.AddGrade(70);
             employee.AddGrade(30);
-            employee.AddGrade(20);
+            employee.AddGrade('E');
             var statistics = employee.GetStatisticsForeach();
 
             //Assert
