@@ -12,7 +12,6 @@ void Employee_GradeAdded(object sender, EventArgs args)
     Console.WriteLine("Grade added");
 }
 
-employee.AddGrade(60);
 
 while (true)
 {
@@ -28,14 +27,11 @@ while (true)
     try
     {
         employee.AddGrade(input);
+        employee.GetStatisticsForeach();
     }
     catch (Exception exception)
     {
         Console.WriteLine($"Exception cought: {exception.Message}");
-    }
-    finally
-    {
-        Console.WriteLine("Code running");
     }
 }
 

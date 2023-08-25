@@ -25,11 +25,14 @@
                         return 'C';
                     case var Average when Average >= 20:
                         return 'D';
-                    default:
+                    case var Average when Average >= 0:
                         return 'E';
+                    default:
+                        return '0';
                 }
             }
         }
+
         public float Sum { get; private set; }
         public int Count { get; private set; }
 
@@ -39,9 +42,7 @@
             this.Sum = 0;
             this.Max = float.MinValue;
             this.Min = float.MaxValue;
-
         }
-
 
         public void AddGrade(float grade)
         {

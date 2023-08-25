@@ -14,7 +14,6 @@
 
         public override void AddGrade(float grade)
         {
-
             if (grade >= 0 && grade <= 100)
             {
                 using (var writer = File.AppendText(fileName))
@@ -29,73 +28,8 @@
             }
             else
             {
-                throw new Exception("invalid grade value");
+                throw new Exception("Invalid grade value");
             }
-
-        }
-        public override void AddGrade(string grade)
-        {
-            
-            if (float.TryParse(grade, out float stringAsFloat))
-            {
-                this.AddGrade(stringAsFloat);
-            }
-            else if (char.TryParse(grade, out char charAsFloat))
-            {
-                this.AddGrade(charAsFloat);
-            }
-            else
-            {
-                throw new Exception("Invalid type of string");
-            }
-        }
-
-        public override void AddGrade(char grade)
-        {
-            switch (grade)
-            {
-                case 'A':
-                case 'a':
-                    this.AddGrade(100);
-                    break;
-                case 'B':
-                case 'b':
-                    this.AddGrade(80);
-                    break;
-                case 'C':
-                case 'c':
-                    this.AddGrade(60);
-                    break;
-                case 'D':
-                case 'd':
-                    this.AddGrade(40);
-                    break;
-                case 'E':
-                case 'e':
-                    this.AddGrade(20);
-                    break;
-                default:
-                    throw new Exception("Invalid char");
-            }
-        }
-
-        public override void AddGrade(int grade)
-        {
-            var intAsFloat = (float)grade;
-            this.AddGrade(intAsFloat);
-        }
-
-        public override void AddGrade(long grade)
-        {
-            var longAsFloat = (float)grade;
-            this.AddGrade(longAsFloat);
-        }
-
-
-        public override void AddGrade(double grade)
-        {
-            var doubleAsFloat = (float)grade;
-            this.AddGrade(doubleAsFloat);
         }
 
         public override Statistics GetStatisticsForeach()
@@ -114,18 +48,17 @@
                     var line = reader.ReadLine();
                     while (line != null)
                     {
-                        if (!string.IsNullOrWhiteSpace(line))
+                        if (float.TryParse(line, out float number))
                         {
-                            var number = float.Parse(line);
                             grades.Add(number);
                             line = reader.ReadLine();
+                        }
 
+                        if (grades.Count == 0)
+                        {
+                            throw new Exception("File is empty");
                         }
                     }
-                }
-                if (grades.Count == 0)
-                {
-                    Console.WriteLine("The file is empty, add grades");
                 }
             }
             return grades;
