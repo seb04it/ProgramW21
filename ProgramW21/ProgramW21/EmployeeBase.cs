@@ -2,11 +2,9 @@
 {
     public abstract class EmployeeBase : IEmployee
     {
-        public  List<float> grades = new List<float>();
-
         public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
-        public virtual event GradeAddedDelegate GradeAdded;
+        public abstract event GradeAddedDelegate GradeAdded;
         public EmployeeBase(string name, string surname)
         {
             this.Name = name;
@@ -32,22 +30,7 @@
             }
         }
 
-        public virtual void AddGrade(float grade)
-        {
-            if (grade >= 0 && grade <= 100)
-            {
-                this.grades.Add(grade);
-
-                if (GradeAdded != null)
-                {
-                    GradeAdded(this, new EventArgs());
-                }
-            }
-            else
-            {
-                throw new Exception("Invalid grade value");
-            }
-        }
+        public abstract void AddGrade(float grade);
 
         public virtual void AddGrade(int grade)
         {
@@ -96,16 +79,6 @@
             }
         }
 
-        public virtual Statistics GetStatisticsForeach()
-        {
-            var statistics = new Statistics();
-
-            foreach (var grade in this.grades)
-            {
-                statistics.AddGrade(grade);
-            }
-
-            return statistics;
-        }
+        public abstract Statistics GetStatisticsForeach();
     }
 }
